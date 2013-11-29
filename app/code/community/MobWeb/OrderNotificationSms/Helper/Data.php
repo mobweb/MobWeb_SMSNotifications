@@ -37,6 +37,7 @@ class MobWeb_OrderNotificationSms_Helper_Data extends Mage_Core_Helper_Abstract 
 		foreach( $settings[ 'recipients' ] AS $recipient ) {
 			// Send the request via CURL
 			$ch = curl_init( sprintf( 'https://api.twilio.com/2010-04-01/Accounts/%s/SMS/Messages.xml', $settings[ 'twilio_account_sid' ] ) );
+			curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false ); // Skip SSL certificate verification
 			curl_setopt( $ch, CURLOPT_POST, 1 );
 			curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 			curl_setopt( $ch, CURLOPT_USERPWD, sprintf( '%s:%s', $settings[ 'twilio_account_sid' ], $settings[ 'twilio_auth_token' ] ) );
