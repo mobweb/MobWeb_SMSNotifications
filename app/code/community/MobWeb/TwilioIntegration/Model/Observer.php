@@ -23,10 +23,7 @@ class MobWeb_TwilioIntegration_Model_Observer
 		// Check if the sending was successful
 		if(!$result) {
 			// If an error occured, notify the administrator
-			Mage::helper('twiliointegration/data')->log('unable to send sms, trying to notify admin now');
 			Mage::helper('twiliointegration/data')->sendAdminEmail(sprintf('%s was unable to send one or more order notifications to the specified number(s). Please check your configuration to make sure that your Twilio API settings are correct!', Mage::helper('twiliointegration/data')->app_name));
-		} else {
-			Mage::helper('twiliointegration/data')->log('order notification sms sent');
 		}
 	}
 
@@ -91,7 +88,6 @@ class MobWeb_TwilioIntegration_Model_Observer
 			// has been sent to the recipients
 			$recipients_string = implode(', ', $settings['recipients']);
 			Mage::getSingleton('adminhtml/session')->addNotice(sprintf('A test message has been sent to the following recipient(s): %s. Please verify that all recipients received this test message. If not, correct the number(s) below.', $recipients_string));
-			Mage::helper('twiliointegration/data')->log('settings updated');
 		} else {
 			Mage::getSingleton('adminhtml/session')->addError('Unable to send test message. Please verify that all your settings are correct and try again.');
 		}

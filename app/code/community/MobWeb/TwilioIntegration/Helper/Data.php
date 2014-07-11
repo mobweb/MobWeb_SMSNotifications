@@ -77,7 +77,7 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 			$this->log('Unable to send sms via twilio: ' . print_r($errors, true));
 			return false;
 		} else {
-			$this->log('sms sent');
+			$this->log('SMS sent: ' . print_r(array($body, $recipients), true));
 			return true;
 		}
 	}
@@ -105,7 +105,6 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 		// Try sending the email
 		try {
 		    $mail->send();
-		    $this->log('email sent to admin');
 		}
 		catch (Exception $e) {
 		    Mage::logException($e);
