@@ -119,7 +119,7 @@
 					<show_in_website>0</show_in_website>
 					<show_in_store>0</show_in_store>
 					<fields>
-						<notification_recipients>
+						<recipients>
 							<label>Notification Recipients</label>
 							<frontend_type>text</frontend_type>
 							<show_in_default>1</show_in_default>
@@ -130,7 +130,7 @@
 								<strong>Example</strong>: To convert a US phone number (415 599 2671) to E.164 format, add the "+" prefix and the country code (which is 1) in front of the number (+1 415 599 2671). In some countries, local dialing requires the addition of a 0 in front of the number. This 0 is removed in the E.164 format.
 							]]></comment>
 							<sort_order>97</sort_order>
-						</notification_recipients>
+						</recipients>
 					</fields>
 				</order_notification>
 				<shipment_notification module="twiliointegration">

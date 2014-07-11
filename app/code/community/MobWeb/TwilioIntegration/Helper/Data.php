@@ -19,8 +19,8 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 		$settings['country_code_filter'] = Mage::getStoreConfig('twiliointegration/general/country_code_filter');
 
 		// Get the order notification settings
-		$settings['recipients'] = Mage::getStoreConfig('twiliointegration/order_notification/notification_recipients');
-		$settings['recipients'] = explode(';', $settings['recipients']);
+		$settings['order_noficication_recipients'] = Mage::getStoreConfig('twiliointegration/order_notification/recipients');
+		$settings['order_noficication_recipients'] = explode(';', $settings['order_noficication_recipients']);
 
 		// Get the shipment notification settings
 		$settings['shipment_notification_message'] = Mage::getStoreConfig('twiliointegration/shipment_notification/message');

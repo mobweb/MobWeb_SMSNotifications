@@ -21,12 +21,12 @@ class MobWeb_TwilioIntegration_Model_Observer
 		$settings = Mage::helper('twiliointegration/data')->getSettings();
 
 		// If no recipients have been set, we can't do anything
-		if(!count($settings['recipients'])) {
+		if(!count($settings['order_noficication_recipients'])) {
 			return;
 		}
 
 		// Send the order notification by SMS
-		$result = Mage::helper('twiliointegration/data')->sendSms($body, $settings['recipients']);
+		$result = Mage::helper('twiliointegration/data')->sendSms($body, $settings['order_noficication_recipients']);
 
 		// Check if the sending was successful
 		if(!$result) {
@@ -73,18 +73,18 @@ class MobWeb_TwilioIntegration_Model_Observer
 		$settings = Mage::helper('twiliointegration/data')->getSettings();
 
 		// If no recipients have been set, we can't do anything
-		if(!count($settings['recipients'])) {
+		if(!count($settings['order_noficication_recipients'])) {
 			return;
 		}
 
 		// Verify the settings by sending a test message
-		$result = Mage::helper('twiliointegration/data')->sendSms('Congratulations, you have configured the extension correctly!', $settings['recipients']);
+		$result = Mage::helper('twiliointegration/data')->sendSms('Congratulations, you have configured the extension correctly!', $settings['order_noficication_recipients']);
 
 		// Display a success or error message
 		if($result) {
 			// If everything has worked, let the user know that a test message
 			// has been sent to the recipients
-			$recipients_string = implode(', ', $settings['recipients']);
+			$recipients_string = implode(', ', $settings['order_noficication_recipients']);
 			Mage::getSingleton('adminhtml/session')->addNotice(sprintf('A test message has been sent to the following recipient(s): %s. Please verify that all recipients received this test message. If not, correct the number(s) below.', $recipients_string));
 		} else {
 			Mage::getSingleton('adminhtml/session')->addError('Unable to send test message. Please verify that all your settings are correct and try again.');
