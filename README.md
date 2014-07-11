@@ -1,8 +1,8 @@
 # MobWeb_TwilioIntegration extension for Magento
 
-Receive an instant notification when a customer places an order with your store.
+This Magento extension integrated enables the automatic sending of various notification SMS via Twilio.
 
-This extension sends an instant notification by text message (SMS) every time a new order is placed with your Magento store. Just enter your mobile phone number into the extension's configuration tab and you're good to go.
+Right now it supports sending a notification to the store owner when a new order is placed and a notification to a customer once a new shipment has been created for them. Easily extendable with new functionality (pull requests welcome!).
 
 ## Installation
 
