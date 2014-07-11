@@ -24,7 +24,7 @@ class MobWeb_TwilioIntegration_Model_Observer
 		if(!count($settings['recipients'])) {
 			return;
 		}
-		
+
 		// Send the order notification by SMS
 		$result = Mage::helper('twiliointegration/data')->sendSms($body, $settings['recipients']);
 
@@ -56,7 +56,7 @@ class MobWeb_TwilioIntegration_Model_Observer
 					}
 				}
 
-				// If the current telephone number is not in the list of filtered country codes, abort
+				// If the current telephone number is not in the list of allowed country codes, abort
 				if(!$telephoneNumberIsAllowed) {
 					Mage::helper('twiliointegration/data')->log(sprintf('Telephone number %s is not in list of allowed country codes: %s', $telephoneNumber, implode(',', $telephoneNumberFilter)));
 					return;

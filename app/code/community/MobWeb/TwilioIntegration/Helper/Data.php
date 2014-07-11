@@ -4,6 +4,7 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 
 	public $app_name = 'Twilio Integration';
 
+	// This method simply returns an array of all the extension specific settings
 	public function getSettings()
 	{
 		// Create an empty array
@@ -22,6 +23,7 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 		return $settings;
 	}
 
+	// This method sends the specified message to the specified recipients
 	public function sendSms($body, $recipients = array())
 	{
 		// Get the settings
@@ -75,6 +77,7 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 		}
 	}
 
+	// This method sends a notification email to the store's admin
 	public function sendAdminEmail($body)
 	{
 		// Get the email settings from the store
@@ -105,6 +108,7 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 		}
 	}
 
+	// This method creates a log entry in the extension specific log file
 	public function log($msg)
 	{
 		Mage::log($msg, null, 'mobweb_twiliointegration.log', true);
