@@ -89,15 +89,14 @@
 						</sender_number>
 					</fields>
 				</twilio_api_credentials>
-				<notification_settings module="twiliointegration">
-					<label>Notification Settings</label>
+				<order_notification module="twiliointegration">
+					<label>Order Notification Settings</label>
 					<expanded>1</expanded>
 					<sort_order>2</sort_order>
 					<show_in_default>1</show_in_default>
 					<show_in_website>0</show_in_website>
 					<show_in_store>0</show_in_store>
 					<fields>
-						<!-- Access this field via: Mage::getStoreConfig( 'twiliointegration/general/custom_option_1' ) -->
 						<notification_recipients>
 							<label>Notification Recipients</label>
 							<frontend_type>text</frontend_type>
@@ -105,36 +104,46 @@
 							<show_in_website>0</show_in_website>
 							<show_in_store>1</show_in_store>
 							<comment><![CDATA[
-								Enter an unlimited number of recipients, separated by a semicolon. The numbers should be in the <a href="http://en.wikipedia.org/wiki/E.164" target="new">E.164 format</a>. This is the default number format used when making international calls. All recipients will receive a test message after saving this form, so feel free to try until you have found the correct format.<br />
+								Enter an unlimited number of recipients, separated by a semicolon. The numbers should be in the <a href="http://en.wikipedia.org/wiki/E.164" target="new">E.164 format</a>. This is the default number format used when making international calls. All recipients will receive a test message after saving this form, so feel free to try until you have found the correct format. Leave this field empty if no order notification should be sent.<br />
 								<strong>Example</strong>: To convert a US phone number (415 599 2671) to E.164 format, add the "+" prefix and the country code (which is 1) in front of the number (+1 415 599 2671). In some countries, local dialing requires the addition of a 0 in front of the number. This 0 is removed in the E.164 format.
 							]]></comment>
 							<sort_order>97</sort_order>
 						</notification_recipients>
-						<telephone_number_country_code_filter>
-							<label>Telephone Number Country Code Filter</label>
+					</fields>
+				</order_notification>
+				<shipment_notification module="twiliointegration">
+					<label>Shipment Notification Settings</label>
+					<expanded>1</expanded>
+					<sort_order>3</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<country_code_filter>
+							<label>Country Code Filter</label>
 							<frontend_type>text</frontend_type>
 							<show_in_default>1</show_in_default>
 							<show_in_website>0</show_in_website>
 							<show_in_store>1</show_in_store>
 							<comment><![CDATA[
-								Specifiy a number of allowed country codes for sending the notifications to, separated by a semicolon.<br />
+								Specifiy the allowed country codes for sending the notifications to, separated by a semicolon.<br />
 								<strong>Example</strong>: +1,+2,+33
 							]]></comment>
 							<sort_order>98</sort_order>
-						</telephone_number_country_code_filter>
-						<shipment_notification_message>
+						</country_code_filter>
+						<message>
 							<label>Shipment Notification Message</label>
 							<frontend_type>text</frontend_type>
 							<show_in_default>1</show_in_default>
 							<show_in_website>0</show_in_website>
 							<show_in_store>1</show_in_store>
 							<comment><![CDATA[
-								Enter the message that a customer should receive once their shipment has been sent.
+								Enter the message that a customer should receive once their shipment has been sent. Leave this field empty if no shipment notification should be sent.
 							]]></comment>
 							<sort_order>99</sort_order>
-						</shipment_notification_message>
+						</message>
 					</fields>
-				</notification_settings>
+				</shipment_notification>
 			</groups>
 		</twiliointegration>
 	</sections>

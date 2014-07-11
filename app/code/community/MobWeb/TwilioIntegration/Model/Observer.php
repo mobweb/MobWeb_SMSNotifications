@@ -38,6 +38,14 @@ class MobWeb_TwilioIntegration_Model_Observer
 	// This method is called whenever a new shipment is created for an order
 	public function salesOrderShipmentSaveAfter($observer)
 	{
+		// Get the settings
+		$settings = Mage::helper('twiliointegration/data')->getSettings();
+
+		// If no shipment notification has been specified, no notification can be sent
+		if(!$settings['shipment_notification_message']) {
+			return;
+		}
+
 		// Get the telephone # associated with the shipping (or billing) address
 		$order = $observer->getEvent()->getShipment()->getOrder();
 		$shippingAdress = $order->getShippingAddress();
@@ -46,7 +54,7 @@ class MobWeb_TwilioIntegration_Model_Observer
 		// Check if a telephone number has been specified
 		if($telephoneNumber) {
 			// If a country code filter has been defined, check if the current telephone number matches against it
-			if($telephoneNumberFilter = Mage::getStoreConfig('twiliointegration/notification_settings/telephone_number_country_code_filter')) {
+			if($telephoneNumberFilter = $settings['country_code_filter']) {
 				$telephoneNumberIsAllowed = false;
 				$telephoneNumberFilter = explode(',', $telephoneNumberFilter);
 				foreach($telephoneNumberFilter AS $telephoneNumberFilterItem) {
@@ -64,7 +72,7 @@ class MobWeb_TwilioIntegration_Model_Observer
 			}
 
 			// Send the shipment notification to the specified telephone number
-			$result = Mage::helper('twiliointegration/data')->sendSms(Mage::getStoreConfig('twiliointegration/notification_settings/shipment_notification_message'), array($telephoneNumber));
+			$result = Mage::helper('twiliointegration/data')->sendSms($settings['shipment_notification_message'], array($telephoneNumber));
 
 			// Display a success or error message
 			if($result) {

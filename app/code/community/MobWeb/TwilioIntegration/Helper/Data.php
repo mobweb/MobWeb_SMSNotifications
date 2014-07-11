@@ -10,14 +10,18 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 		// Create an empty array
 		$settings = array();
 
-		// Populate the settings
+		// Get the Twilio settings
 		$settings['twilio_account_sid'] = Mage::getStoreConfig('twiliointegration/twilio_api_credentials/account_sid');
 		$settings['twilio_auth_token'] = Mage::getStoreConfig('twiliointegration/twilio_api_credentials/auth_token');
 		$settings['twilio_sender_number'] = Mage::getStoreConfig('twiliointegration/twilio_api_credentials/sender_number');
-		$settings['recipients'] = Mage::getStoreConfig('twiliointegration/notification_settings/notification_recipients');
 
-		// Separate the recipients
+		// Get the order notification settings
+		$settings['recipients'] = Mage::getStoreConfig('twiliointegration/order_notification/notification_recipients');
 		$settings['recipients'] = explode(';', $settings['recipients']);
+
+		// Get the shipment notification settings
+		$settings['country_code_filter'] = Mage::getStoreConfig('twiliointegration/shipment_notification/country_code_filter');
+		$settings['shipment_notification_message'] = Mage::getStoreConfig('twiliointegration/shipment_notification/message');
 
 		// Return the settings
 		return $settings;
