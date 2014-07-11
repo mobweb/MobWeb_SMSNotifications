@@ -17,8 +17,16 @@ class MobWeb_TwilioIntegration_Model_Observer
 
 		$body = sprintf('%s: %s has just placed an order for %s', $store_name, $customer_name, $order_amount);
 
+		// Get the settings
+		$settings = Mage::helper('twiliointegration/data')->getSettings();
+
+		// If no recipients have been set, we can't do anything
+		if(!count($settings['recipients'])) {
+			return;
+		}
+		
 		// Send the order notification by SMS
-		$result = Mage::helper('twiliointegration/data')->sendSms($body);
+		$result = Mage::helper('twiliointegration/data')->sendSms($body, $settings['recipients']);
 
 		// Check if the sending was successful
 		if(!$result) {
@@ -80,7 +88,7 @@ class MobWeb_TwilioIntegration_Model_Observer
 		}
 
 		// Verify the settings by sending a test message
-		$result = Mage::helper('twiliointegration/data')->sendSms('Congratulations, you have configured the extension correctly!');
+		$result = Mage::helper('twiliointegration/data')->sendSms('Congratulations, you have configured the extension correctly!', $settings['recipients']);
 
 		// Display a success or error message
 		if($result) {

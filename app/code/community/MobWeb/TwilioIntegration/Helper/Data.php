@@ -27,16 +27,9 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 		// Get the settings
 		$settings = $this->getSettings();
 
-		// Check if any recipients have been specified
+		// If no recipients have been specified, don't do anything
 		if(!count($recipients)) {
-			// If no recipients have been specfied, check if any default recipients have been specified
-			if(!count($settings['recipients'])) {
-				// If no recipients have been specified, return without sending anything
-				return;
-			} else {
-				// If yes, use these default recipients
-				$recipients = $settings['recipients'];
-			}
+			return;
 		}
 
 		// Loop through the recipients and send each SMS separately
