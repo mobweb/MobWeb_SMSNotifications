@@ -15,12 +15,14 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 		$settings['twilio_auth_token'] = Mage::getStoreConfig('twiliointegration/twilio_api_credentials/auth_token');
 		$settings['twilio_sender_number'] = Mage::getStoreConfig('twiliointegration/twilio_api_credentials/sender_number');
 
+		// Get the general settings
+		$settings['country_code_filter'] = Mage::getStoreConfig('twiliointegration/general/country_code_filter');
+
 		// Get the order notification settings
 		$settings['recipients'] = Mage::getStoreConfig('twiliointegration/order_notification/notification_recipients');
 		$settings['recipients'] = explode(';', $settings['recipients']);
 
 		// Get the shipment notification settings
-		$settings['country_code_filter'] = Mage::getStoreConfig('twiliointegration/shipment_notification/country_code_filter');
 		$settings['shipment_notification_message'] = Mage::getStoreConfig('twiliointegration/shipment_notification/message');
 
 		// Return the settings
@@ -41,6 +43,37 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 		// Loop through the recipients and send each SMS separately
 		$errors = array();
 		foreach($recipients AS $recipient) {
+			// Before working with the telephone number, do some guesswork to optimize the number format
+			// Notice: These optimizations are specific to Swiss phone numbers. Add your own logic for your country
+			// These are the strings that should be optimized, but only if they occur at the beginning of the number
+			$optimizable = array('07', '00');
+			$optimizableReplace = array('+417', '+');
+			foreach($optimizable AS $optimizableString) {
+				if(strpos($recipient, $optimizableString) === 0) {
+					$this->log(sprintf('Optimizing %s...', $recipient));
+					str_replace($optimizable, $optimizableReplace, $recipient);
+					$this->log(sprintf('.. result: %s', $recipient));
+				}
+			}
+
+			// If a country code filter has been defined, check if the current telephone number matches against it
+			if($telephoneNumberFilter = $settings['country_code_filter']) {
+				$telephoneNumberIsAllowed = false;
+				$telephoneNumberFilter = explode(',', $telephoneNumberFilter);
+				foreach($telephoneNumberFilter AS $telephoneNumberFilterItem) {
+					if(strpos($telephoneNumber, trim($telephoneNumberFilterItem)) === 0) {
+						$telephoneNumberIsAllowed = true;
+						break;
+					}
+				}
+
+				// If the current telephone number is not in the list of allowed country codes, abort
+				if(!$telephoneNumberIsAllowed) {
+					$this->log(sprintf('Telephone number %s is not in list of allowed country codes: %s', $telephoneNumber, implode(',', $telephoneNumberFilter)));
+					return false;
+				}
+			}
+
 			// Send the request via CURL
 			$ch = curl_init(sprintf('https://api.twilio.com/2010-04-01/Accounts/%s/SMS/Messages.xml', $settings['twilio_account_sid']));
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Skip SSL certificate verification

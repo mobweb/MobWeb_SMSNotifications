@@ -89,10 +89,32 @@
 						</sender_number>
 					</fields>
 				</twilio_api_credentials>
+				<general module="twiliointegration">
+					<label>General Settings</label>
+					<expanded>1</expanded>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>0</show_in_website>
+					<show_in_store>0</show_in_store>
+					<fields>
+						<country_code_filter>
+							<label>Country Code Filter</label>
+							<frontend_type>text</frontend_type>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[
+								Specifiy the allowed country codes for sending the messages to, separated by a semicolon. Use this to only allow phone numbers in certain countries as recipients of your messages.<br />
+								<strong>Example</strong>: +1,+2,+33
+							]]></comment>
+							<sort_order>98</sort_order>
+						</country_code_filter>
+					</fields>
+				</general>
 				<order_notification module="twiliointegration">
 					<label>Order Notification Settings</label>
 					<expanded>1</expanded>
-					<sort_order>2</sort_order>
+					<sort_order>3</sort_order>
 					<show_in_default>1</show_in_default>
 					<show_in_website>0</show_in_website>
 					<show_in_store>0</show_in_store>
@@ -114,23 +136,11 @@
 				<shipment_notification module="twiliointegration">
 					<label>Shipment Notification Settings</label>
 					<expanded>1</expanded>
-					<sort_order>3</sort_order>
+					<sort_order>4</sort_order>
 					<show_in_default>1</show_in_default>
 					<show_in_website>0</show_in_website>
 					<show_in_store>0</show_in_store>
 					<fields>
-						<country_code_filter>
-							<label>Country Code Filter</label>
-							<frontend_type>text</frontend_type>
-							<show_in_default>1</show_in_default>
-							<show_in_website>0</show_in_website>
-							<show_in_store>1</show_in_store>
-							<comment><![CDATA[
-								Specifiy the allowed country codes for sending the notifications to, separated by a semicolon.<br />
-								<strong>Example</strong>: +1,+2,+33
-							]]></comment>
-							<sort_order>98</sort_order>
-						</country_code_filter>
 						<message>
 							<label>Shipment Notification Message</label>
 							<frontend_type>text</frontend_type>

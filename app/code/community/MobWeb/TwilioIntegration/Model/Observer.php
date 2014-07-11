@@ -53,24 +53,6 @@ class MobWeb_TwilioIntegration_Model_Observer
 
 		// Check if a telephone number has been specified
 		if($telephoneNumber) {
-			// If a country code filter has been defined, check if the current telephone number matches against it
-			if($telephoneNumberFilter = $settings['country_code_filter']) {
-				$telephoneNumberIsAllowed = false;
-				$telephoneNumberFilter = explode(',', $telephoneNumberFilter);
-				foreach($telephoneNumberFilter AS $telephoneNumberFilterItem) {
-					if(strpos($telephoneNumber, trim($telephoneNumberFilterItem)) === 0) {
-						$telephoneNumberIsAllowed = true;
-						break;
-					}
-				}
-
-				// If the current telephone number is not in the list of allowed country codes, abort
-				if(!$telephoneNumberIsAllowed) {
-					Mage::helper('twiliointegration/data')->log(sprintf('Telephone number %s is not in list of allowed country codes: %s', $telephoneNumber, implode(',', $telephoneNumberFilter)));
-					return;
-				}
-			}
-
 			// Send the shipment notification to the specified telephone number
 			$result = Mage::helper('twiliointegration/data')->sendSms($settings['shipment_notification_message'], array($telephoneNumber));
 
