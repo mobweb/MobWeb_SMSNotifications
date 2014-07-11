@@ -110,6 +110,29 @@
 							]]></comment>
 							<sort_order>97</sort_order>
 						</notification_recipients>
+						<telephone_number_country_code_filter>
+							<label>Telephone Number Country Code Filter</label>
+							<frontend_type>text</frontend_type>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[
+								Specifiy a number of allowed country codes for sending the notifications to, separated by a semicolon.<br />
+								<strong>Example</strong>: +1,+2,+33
+							]]></comment>
+							<sort_order>98</sort_order>
+						</telephone_number_country_code_filter>
+						<shipment_notification_message>
+							<label>Shipment Notification Message</label>
+							<frontend_type>text</frontend_type>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[
+								Enter the message that a customer should receive once their shipment has been sent.
+							]]></comment>
+							<sort_order>99</sort_order>
+						</shipment_notification_message>
 					</fields>
 				</notification_settings>
 			</groups>

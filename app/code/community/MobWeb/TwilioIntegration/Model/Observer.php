@@ -30,6 +30,46 @@ class MobWeb_TwilioIntegration_Model_Observer
 		}
 	}
 
+	// This method is called whenever a new shipment is created for an order
+	public function salesOrderShipmentSaveAfter($observer)
+	{
+		// Get the telephone # associated with the shipping (or billing) address
+		$order = $observer->getEvent()->getShipment()->getOrder();
+		$shippingAdress = $order->getShippingAddress();
+		$telephoneNumber = $shippingAdress->getTelephone();
+
+		// Check if a telephone number has been specified
+		if($telephoneNumber) {
+			// If a country code filter has been defined, check if the current telephone number matches against it
+			if($telephoneNumberFilter = Mage::getStoreConfig('twiliointegration/notification_settings/telephone_number_country_code_filter')) {
+				$telephoneNumberIsAllowed = false;
+				$telephoneNumberFilter = explode(',', $telephoneNumberFilter);
+				foreach($telephoneNumberFilter AS $telephoneNumberFilterItem) {
+					if(strpos($telephoneNumber, $telephoneNumberFilterItem) === 0) {
+						$telephoneNumberIsAllowed = true;
+						break;
+					}
+				}
+
+				// If the current telephone number is not in the list of filtered country codes, abort
+				if(!$telephoneNumberIsAllowed) {
+					Mage::helper('twiliointegration/data')->log(sprintf('Telephone number %s is not in list of allowed country codes: %s', $telephoneNumber, implode(',', $telephoneNumberFilter)));
+					return;
+				}
+			}
+
+			// Send the shipment notification to the specified telephone number
+			$result = Mage::helper('twiliointegration/data')->sendSms(Mage::getStoreConfig('twiliointegration/notification_settings/shipment_notification_message'), array($telephoneNumber));
+
+			// Display a success or error message
+			if($result) {
+				Mage::getSingleton('adminhtml/session')->addSuccess(sprintf('The shipment notification has been sent via SMS to: %s', $telephoneNumber));
+			} else {
+				Mage::getSingleton('adminhtml/session')->addError('There has been an error sending the shipment notification SMS.');
+			}
+		}
+	}
+
 	// This method is called whenever the application's setting in the
 	// adminhtml are changed
 	public function configSaveAfter( $observer )

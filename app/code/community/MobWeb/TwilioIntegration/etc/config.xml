@@ -30,6 +30,19 @@
             </admin_system_config_changed_section_twiliointegration>
         </events>
     </adminhtml>
+    <global>
+        <events>
+            <sales_order_shipment_save_after>
+                <observers>
+                    <twiliointegration>
+                        <type>singleton</type>
+                        <class>twiliointegration/observer</class>
+                        <method>salesOrderShipmentSaveAfter</method>
+                    </twiliointegration>
+                </observers>
+            </sales_order_shipment_save_after>
+        </events>
+    </global>
     <frontend>
         <events>
             <sales_order_place_after>

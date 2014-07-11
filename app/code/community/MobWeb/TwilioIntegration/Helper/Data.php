@@ -22,19 +22,26 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 		return $settings;
 	}
 
-	public function sendSms( $body )
+	public function sendSms($body, $recipients = array())
 	{
 		// Get the settings
 		$settings = $this->getSettings();
 
-		// If no recipient has been set, don't do anything
-		if( !count( $settings[ 'recipients' ] ) ) {
-			return;
+		// Check if any recipients have been specified
+		if(!count($recipients)) {
+			// If no recipients have been specfied, check if any default recipients have been specified
+			if(!count($settings['recipients'])) {
+				// If no recipients have been specified, return without sending anything
+				return;
+			} else {
+				// If yes, use these default recipients
+				$recipients = $settings['recipients'];
+			}
 		}
 
 		// Loop through the recipients and send each SMS separately
 		$errors = array();
-		foreach( $settings[ 'recipients' ] AS $recipient ) {
+		foreach($recipients AS $recipient) {
 			// Send the request via CURL
 			$ch = curl_init( sprintf( 'https://api.twilio.com/2010-04-01/Accounts/%s/SMS/Messages.xml', $settings[ 'twilio_account_sid' ] ) );
 			curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false ); // Skip SSL certificate verification
@@ -58,7 +65,7 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 					$settings[ 'twilio_account_sid' ],
 					$settings[ 'twilio_auth_token' ],
 					$settings[ 'twilio_sender_number' ],
-					$settings[ 'recipients' ],
+					$recipients,
 					print_r( $response, true )
 				);
 			}
