@@ -49,7 +49,7 @@ class MobWeb_TwilioIntegration_Model_Observer
 		// Get the telephone # associated with the shipping (or billing) address
 		$order = $observer->getEvent()->getShipment()->getOrder();
 		$shippingAdress = $order->getShippingAddress();
-		$telephoneNumber = $shippingAdress->getTelephone();
+		$telephoneNumber = trim($shippingAdress->getTelephone());
 
 		// Check if a telephone number has been specified
 		if($telephoneNumber) {
@@ -58,7 +58,7 @@ class MobWeb_TwilioIntegration_Model_Observer
 				$telephoneNumberIsAllowed = false;
 				$telephoneNumberFilter = explode(',', $telephoneNumberFilter);
 				foreach($telephoneNumberFilter AS $telephoneNumberFilterItem) {
-					if(strpos($telephoneNumber, $telephoneNumberFilterItem) === 0) {
+					if(strpos($telephoneNumber, trim($telephoneNumberFilterItem)) === 0) {
 						$telephoneNumberIsAllowed = true;
 						break;
 					}
