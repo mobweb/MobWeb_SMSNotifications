@@ -51,7 +51,7 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 			foreach($optimizable AS $optimizableString) {
 				if(strpos($recipient, $optimizableString) === 0) {
 					$this->log(sprintf('Optimizing %s...', $recipient));
-					str_replace($optimizable, $optimizableReplace, $recipient);
+					$recipient = str_replace($optimizable, $optimizableReplace, $recipient);
 					$this->log(sprintf('.. result: %s', $recipient));
 				}
 			}
@@ -61,7 +61,7 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 				$telephoneNumberIsAllowed = false;
 				$telephoneNumberFilter = explode(',', $telephoneNumberFilter);
 				foreach($telephoneNumberFilter AS $telephoneNumberFilterItem) {
-					if(strpos($telephoneNumber, trim($telephoneNumberFilterItem)) === 0) {
+					if(strpos($recipient, trim($telephoneNumberFilterItem)) === 0) {
 						$telephoneNumberIsAllowed = true;
 						break;
 					}
@@ -69,7 +69,7 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 
 				// If the current telephone number is not in the list of allowed country codes, abort
 				if(!$telephoneNumberIsAllowed) {
-					$this->log(sprintf('Telephone number %s is not in list of allowed country codes: %s', $telephoneNumber, implode(',', $telephoneNumberFilter)));
+					$this->log(sprintf('Telephone number %s is not in list of allowed country codes: %s', $recipient, implode(',', $telephoneNumberFilter)));
 					return false;
 				}
 			}
