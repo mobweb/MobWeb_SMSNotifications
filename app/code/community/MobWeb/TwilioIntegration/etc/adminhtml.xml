@@ -8,9 +8,9 @@
 						<children>
 							<config>
 								<children>
-									<ordernotificationsms translate="title" module="ordernotificationsms">
-										<title>ordernotificationsms</title>
-									</ordernotificationsms>
+									<twiliointegration translate="title" module="twiliointegration">
+										<title>twiliointegration</title>
+									</twiliointegration>
 								</children>
 							</config>
 						</children>

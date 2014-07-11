@@ -1,4 +1,4 @@
-# MobWeb_OrderNotificationSms extension for Magento
+# MobWeb_TwilioIntegration extension for Magento
 
 Receive an instant notification when a customer places an order with your store.
 

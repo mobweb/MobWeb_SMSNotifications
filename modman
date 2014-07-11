@@ -1,6 +1,6 @@
-app/code/community/MobWeb/OrderNotificationSms app/code/community/MobWeb/OrderNotificationSms/
+app/code/community/MobWeb/TwilioIntegration app/code/community/MobWeb/TwilioIntegration/
 
-app/etc/modules/MobWeb_OrderNotificationSms.xml app/etc/modules/MobWeb_OrderNotificationSms.xml
+app/etc/modules/MobWeb_TwilioIntegration.xml app/etc/modules/MobWeb_TwilioIntegration.xml
 
 # Clear the cache
 @shell   rm -rf $PROJECT/var/cache/* && echo "Magento Cache cleared"

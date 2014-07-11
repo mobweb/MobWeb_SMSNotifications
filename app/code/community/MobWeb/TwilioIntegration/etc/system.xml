@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <config>
 	<sections>
-		<ordernotificationsms module="ordernotificationsms">
+		<twiliointegration module="twiliointegration">
 			<tab>sales</tab>
-			<label>Order Notification SMS</label>
+			<label>Twilio Integration</label>
 			<sort_order>9001</sort_order>
 			<show_in_default>1</show_in_default>
 			<show_in_website>0</show_in_website>
@@ -18,7 +18,7 @@
 					<show_in_store>0</show_in_store>
                     <comment><![CDATA[
                     	<p>
-                    		Thank you for using «Order Notification SMS». To configure the module, follow the list below or watch our setup guide video:
+                    		Thank you for using «Twilio Integration». To configure the module, follow the list below or watch our setup guide video:
 	                    </p>
                     	<iframe width="560" height="315" src="http://www.youtube.com/embed/GXur2IFY7hw?rel=0" frameborder="0" allowfullscreen></iframe>
 						<ul style="list-style:decimal;margin:20px 20px">
@@ -40,7 +40,7 @@
 	                    </p>
 					]]></comment>
 				</introduction>
-				<twilio_api_credentials module="ordernotificationsms">
+				<twilio_api_credentials module="twiliointegration">
 					<label>Twilio API Credentials</label>
 					<expanded>1</expanded>
 					<sort_order>1</sort_order>
@@ -89,7 +89,7 @@
 						</sender_number>
 					</fields>
 				</twilio_api_credentials>
-				<notification_settings module="ordernotificationsms">
+				<notification_settings module="twiliointegration">
 					<label>Notification Settings</label>
 					<expanded>1</expanded>
 					<sort_order>2</sort_order>
@@ -97,7 +97,7 @@
 					<show_in_website>0</show_in_website>
 					<show_in_store>0</show_in_store>
 					<fields>
-						<!-- Access this field via: Mage::getStoreConfig( 'ordernotificationsms/general/custom_option_1' ) -->
+						<!-- Access this field via: Mage::getStoreConfig( 'twiliointegration/general/custom_option_1' ) -->
 						<notification_recipients>
 							<label>Notification Recipients</label>
 							<frontend_type>text</frontend_type>
@@ -113,6 +113,6 @@
 					</fields>
 				</notification_settings>
 			</groups>
-		</ordernotificationsms>
+		</twiliointegration>
 	</sections>
 </config>

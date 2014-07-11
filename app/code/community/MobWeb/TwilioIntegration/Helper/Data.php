@@ -1,8 +1,8 @@
 <?php
 
-class MobWeb_OrderNotificationSms_Helper_Data extends Mage_Core_Helper_Abstract {
+class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 
-	public $app_name = 'Order Notification SMS';
+	public $app_name = 'Twilio Integration';
 
 	public function getSettings()
 	{
@@ -10,10 +10,10 @@ class MobWeb_OrderNotificationSms_Helper_Data extends Mage_Core_Helper_Abstract 
 		$settings = array();
 
 		// Populate the settings
-		$settings[ 'twilio_account_sid' ] = Mage::getStoreConfig( 'ordernotificationsms/twilio_api_credentials/account_sid' );
-		$settings[ 'twilio_auth_token' ] = Mage::getStoreConfig( 'ordernotificationsms/twilio_api_credentials/auth_token' );
-		$settings[ 'twilio_sender_number' ] = Mage::getStoreConfig( 'ordernotificationsms/twilio_api_credentials/sender_number' );
-		$settings[ 'recipients' ] = Mage::getStoreConfig( 'ordernotificationsms/notification_settings/notification_recipients' );
+		$settings[ 'twilio_account_sid' ] = Mage::getStoreConfig( 'twiliointegration/twilio_api_credentials/account_sid' );
+		$settings[ 'twilio_auth_token' ] = Mage::getStoreConfig( 'twiliointegration/twilio_api_credentials/auth_token' );
+		$settings[ 'twilio_sender_number' ] = Mage::getStoreConfig( 'twiliointegration/twilio_api_credentials/sender_number' );
+		$settings[ 'recipients' ] = Mage::getStoreConfig( 'twiliointegration/notification_settings/notification_recipients' );
 
 		// Separate the recipients
 		$settings[ 'recipients' ] = explode( ';', $settings[ 'recipients' ] );
@@ -108,6 +108,6 @@ class MobWeb_OrderNotificationSms_Helper_Data extends Mage_Core_Helper_Abstract 
 
 	public function log( $msg )
 	{
-		Mage::log( $msg, null, 'mobweb_ordernotificationsms.log', true );
+		Mage::log( $msg, null, 'mobweb_twiliointegration.log', true );
 	}
 }
