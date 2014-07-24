@@ -2,7 +2,7 @@
 
 class MobWeb_SMSNotifications_Helper_Data extends Mage_Core_Helper_Abstract {
 
-	public $app_name = 'Twilio Integration';
+	public $app_name = 'MobWeb_SMSNotifications';
 
 	// This method simply returns an array of all the extension specific settings
 	public function getSettings()
