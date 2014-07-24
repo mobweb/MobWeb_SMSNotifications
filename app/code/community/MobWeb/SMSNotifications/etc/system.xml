@@ -2,8 +2,8 @@
 <config>
 	<sections>
 		<smsnotifications module="smsnotifications">
-			<tab>sales</tab>
-			<label>Twilio Integration</label>
+			<tab>service</tab>
+			<label>SMS Notifications</label>
 			<sort_order>9001</sort_order>
 			<show_in_default>1</show_in_default>
 			<show_in_website>0</show_in_website>
