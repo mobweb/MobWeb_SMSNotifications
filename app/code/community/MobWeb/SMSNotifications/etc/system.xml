@@ -9,19 +9,19 @@
 			<show_in_website>0</show_in_website>
 			<show_in_store>0</show_in_store>
 			<groups>
-				<introduction>
-					<label>Getting Started</label>
+				<twilio_api_credentials module="smsnotifications">
+					<label>Twilio API Credentials</label>
 					<expanded>1</expanded>
-					<sort_order>0</sort_order>
+					<sort_order>1</sort_order>
 					<show_in_default>1</show_in_default>
 					<show_in_website>0</show_in_website>
 					<show_in_store>0</show_in_store>
-                    <comment><![CDATA[
-                    	<p>
-                    		Thank you for using «Twilio Integration». To configure the module, follow the list below or watch our setup guide video:
-	                    </p>
-                    	<iframe width="560" height="315" src="http://www.youtube.com/embed/GXur2IFY7hw?rel=0" frameborder="0" allowfullscreen></iframe>
-						<ul style="list-style:decimal;margin:20px 20px">
+					<comment><![CDATA[
+						<p>
+							If you wish to use Twilio to send your SMS notifications, please fill out the fields below as explained in the following steps:
+						</p>
+						</p>
+						<ul style="list-style:decimal;margin:0px 20px">
 							<li>
 								The first thing you should do is sign up for a free Twilio account. Twilio is a service that can send short messages over the internet. Go to their <a href="https://www.twilio.com/try-twilio" target="_new">Signup Page</a> to create your free account.
 							</li>
@@ -35,18 +35,10 @@
 								After entering the recipient(s), you're all set! Each time after saving this form, all the specified numbers should receive a test message, so you can make sure that everything works. As soon as the next order is placed with your store, you will receive a notification message.
 							</li>
 						</ul>
-                    	<p>
-                    		If you have any questions or feel that something doesn't work as it should, feel free to contact us at <a href="mailto:info@mobweb.ch">info@mobweb.ch</a>.
-	                    </p>
+						<p>
+							If you have any questions or feel that something doesn't work as it should, feel free to contact us at <a href="mailto:info@mobweb.ch">info@mobweb.ch</a>.
+						</p>
 					]]></comment>
-				</introduction>
-				<twilio_api_credentials module="smsnotifications">
-					<label>Twilio API Credentials</label>
-					<expanded>1</expanded>
-					<sort_order>1</sort_order>
-					<show_in_default>1</show_in_default>
-					<show_in_website>0</show_in_website>
-					<show_in_store>0</show_in_store>
 					<fields>
 						<account_sid>
 							<label>Twilio Account SID</label>
@@ -96,6 +88,11 @@
 					<show_in_default>1</show_in_default>
 					<show_in_website>0</show_in_website>
 					<show_in_store>0</show_in_store>
+					<comment><![CDATA[
+						<p>
+							You may specify a list of allowed country codes below. Any messages will only be sent to the country codes in this list. Leave blank to allow all country codes.
+						</p>
+					]]></comment>
 					<fields>
 						<country_code_filter>
 							<label>Country Code Filter</label>
@@ -118,6 +115,11 @@
 					<show_in_default>1</show_in_default>
 					<show_in_website>0</show_in_website>
 					<show_in_store>0</show_in_store>
+					<comment><![CDATA[
+						<p>
+							To send an automatic notification by SMS once an order has been placed with your store, enter the recipient number(s) below.
+						</p>
+					]]></comment>
 					<fields>
 						<recipients>
 							<label>Notification Recipients</label>
@@ -140,10 +142,15 @@
 					<show_in_default>1</show_in_default>
 					<show_in_website>0</show_in_website>
 					<show_in_store>0</show_in_store>
+					<comment><![CDATA[
+						<p>
+							To send an shipment notification to your customers once their shipment has been created, enter a shipment message below.
+						</p>
+					]]></comment>
 					<fields>
 						<message>
 							<label>Shipment Notification Message</label>
-							<frontend_type>text</frontend_type>
+							<frontend_type>textarea</frontend_type>
 							<show_in_default>1</show_in_default>
 							<show_in_website>0</show_in_website>
 							<show_in_store>1</show_in_store>
