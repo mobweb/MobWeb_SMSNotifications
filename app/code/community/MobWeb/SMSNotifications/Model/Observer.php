@@ -1,6 +1,6 @@
 <?php
 
-class MobWeb_TwilioIntegration_Model_Observer
+class MobWeb_SMSNotifications_Model_Observer
 {
 	// This method is called whenever a new order is placed with the store
 	public function salesOrderPlaceAfter($observer)
@@ -18,7 +18,7 @@ class MobWeb_TwilioIntegration_Model_Observer
 		$body = sprintf('%s: %s has just placed an order for %s', $store_name, $customer_name, $order_amount);
 
 		// Get the settings
-		$settings = Mage::helper('twiliointegration/data')->getSettings();
+		$settings = Mage::helper('smsnotifications/data')->getSettings();
 
 		// If no recipients have been set, we can't do anything
 		if(!count($settings['order_noficication_recipients'])) {
@@ -26,12 +26,12 @@ class MobWeb_TwilioIntegration_Model_Observer
 		}
 
 		// Send the order notification by SMS
-		$result = Mage::helper('twiliointegration/data')->sendSms($body, $settings['order_noficication_recipients']);
+		$result = Mage::helper('smsnotifications/data')->sendSms($body, $settings['order_noficication_recipients']);
 
 		// Check if the sending was successful
 		if(!$result) {
 			// If an error occured, notify the administrator
-			Mage::helper('twiliointegration/data')->sendAdminEmail(sprintf('%s was unable to send one or more order notifications to the specified number(s). Please check your configuration to make sure that your Twilio API settings are correct!', Mage::helper('twiliointegration/data')->app_name));
+			Mage::helper('smsnotifications/data')->sendAdminEmail(sprintf('%s was unable to send one or more order notifications to the specified number(s). Please check your configuration to make sure that your Twilio API settings are correct!', Mage::helper('smsnotifications/data')->app_name));
 		}
 	}
 
@@ -39,7 +39,7 @@ class MobWeb_TwilioIntegration_Model_Observer
 	public function salesOrderShipmentSaveAfter($observer)
 	{
 		// Get the settings
-		$settings = Mage::helper('twiliointegration/data')->getSettings();
+		$settings = Mage::helper('smsnotifications/data')->getSettings();
 
 		// If no shipment notification has been specified, no notification can be sent
 		if(!$settings['shipment_notification_message']) {
@@ -54,7 +54,7 @@ class MobWeb_TwilioIntegration_Model_Observer
 		// Check if a telephone number has been specified
 		if($telephoneNumber) {
 			// Send the shipment notification to the specified telephone number
-			$result = Mage::helper('twiliointegration/data')->sendSms($settings['shipment_notification_message'], array($telephoneNumber));
+			$result = Mage::helper('smsnotifications/data')->sendSms($settings['shipment_notification_message'], array($telephoneNumber));
 
 			// Display a success or error message
 			if($result) {
@@ -70,7 +70,7 @@ class MobWeb_TwilioIntegration_Model_Observer
 	public function configSaveAfter($observer)
 	{
 		// Get the settings
-		$settings = Mage::helper('twiliointegration/data')->getSettings();
+		$settings = Mage::helper('smsnotifications/data')->getSettings();
 
 		// If no recipients have been set, we can't do anything
 		if(!count($settings['order_noficication_recipients'])) {
@@ -78,7 +78,7 @@ class MobWeb_TwilioIntegration_Model_Observer
 		}
 
 		// Verify the settings by sending a test message
-		$result = Mage::helper('twiliointegration/data')->sendSms('Congratulations, you have configured the extension correctly!', $settings['order_noficication_recipients']);
+		$result = Mage::helper('smsnotifications/data')->sendSms('Congratulations, you have configured the extension correctly!', $settings['order_noficication_recipients']);
 
 		// Display a success or error message
 		if($result) {

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config>
 	<sections>
-		<twiliointegration module="twiliointegration">
+		<smsnotifications module="smsnotifications">
 			<tab>sales</tab>
 			<label>Twilio Integration</label>
 			<sort_order>9001</sort_order>
@@ -40,7 +40,7 @@
 	                    </p>
 					]]></comment>
 				</introduction>
-				<twilio_api_credentials module="twiliointegration">
+				<twilio_api_credentials module="smsnotifications">
 					<label>Twilio API Credentials</label>
 					<expanded>1</expanded>
 					<sort_order>1</sort_order>
@@ -89,7 +89,7 @@
 						</sender_number>
 					</fields>
 				</twilio_api_credentials>
-				<general module="twiliointegration">
+				<general module="smsnotifications">
 					<label>General Settings</label>
 					<expanded>1</expanded>
 					<sort_order>2</sort_order>
@@ -111,7 +111,7 @@
 						</country_code_filter>
 					</fields>
 				</general>
-				<order_notification module="twiliointegration">
+				<order_notification module="smsnotifications">
 					<label>Order Notification Settings</label>
 					<expanded>1</expanded>
 					<sort_order>3</sort_order>
@@ -133,7 +133,7 @@
 						</recipients>
 					</fields>
 				</order_notification>
-				<shipment_notification module="twiliointegration">
+				<shipment_notification module="smsnotifications">
 					<label>Shipment Notification Settings</label>
 					<expanded>1</expanded>
 					<sort_order>4</sort_order>
@@ -155,6 +155,6 @@
 					</fields>
 				</shipment_notification>
 			</groups>
-		</twiliointegration>
+		</smsnotifications>
 	</sections>
 </config>

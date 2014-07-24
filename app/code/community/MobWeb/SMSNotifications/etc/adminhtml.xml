@@ -8,9 +8,9 @@
 						<children>
 							<config>
 								<children>
-									<twiliointegration translate="title" module="twiliointegration">
-										<title>twiliointegration</title>
-									</twiliointegration>
+									<smsnotifications translate="title" module="smsnotifications">
+										<title>smsnotifications</title>
+									</smsnotifications>
 								</children>
 							</config>
 						</children>

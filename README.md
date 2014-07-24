@@ -1,4 +1,4 @@
-# MobWeb_TwilioIntegration extension for Magento
+# MobWeb_SMSNotifications extension for Magento
 
 This Magento extension integrated enables the automatic sending of various notification SMS via Twilio.
 

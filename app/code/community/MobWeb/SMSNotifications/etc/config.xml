@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <modules>
-        <MobWeb_TwilioIntegration>
+        <MobWeb_SMSNotifications>
             <version>0.1.5</version>
-        </MobWeb_TwilioIntegration>
+        </MobWeb_SMSNotifications>
     </modules>
     <global>
         <models>
-            <twiliointegration>
-                <class>MobWeb_TwilioIntegration_Model</class>
-            </twiliointegration>
+            <smsnotifications>
+                <class>MobWeb_SMSNotifications_Model</class>
+            </smsnotifications>
         </models>
         <helpers>
-            <twiliointegration>
-                <class>MobWeb_TwilioIntegration_Helper</class>
-            </twiliointegration>
+            <smsnotifications>
+                <class>MobWeb_SMSNotifications_Helper</class>
+            </smsnotifications>
         </helpers>
     </global>
     <adminhtml>
         <events>
-            <admin_system_config_changed_section_twiliointegration>
+            <admin_system_config_changed_section_smsnotifications>
                 <observers>
-                    <twiliointegration>
+                    <smsnotifications>
                         <type>singleton</type>
-                        <class>twiliointegration/observer</class>
+                        <class>smsnotifications/observer</class>
                         <method>configSaveAfter</method>
-                    </twiliointegration>
+                    </smsnotifications>
                 </observers>
-            </admin_system_config_changed_section_twiliointegration>
+            </admin_system_config_changed_section_smsnotifications>
         </events>
     </adminhtml>
     <global>
         <events>
             <sales_order_shipment_save_after>
                 <observers>
-                    <twiliointegration>
+                    <smsnotifications>
                         <type>singleton</type>
-                        <class>twiliointegration/observer</class>
+                        <class>smsnotifications/observer</class>
                         <method>salesOrderShipmentSaveAfter</method>
-                    </twiliointegration>
+                    </smsnotifications>
                 </observers>
             </sales_order_shipment_save_after>
         </events>
@@ -47,11 +47,11 @@
         <events>
             <sales_order_place_after>
                 <observers>
-                    <twiliointegration>
+                    <smsnotifications>
                         <type>singleton</type>
-                        <class>twiliointegration/observer</class>
+                        <class>smsnotifications/observer</class>
                         <method>salesOrderPlaceAfter</method>
-                    </twiliointegration>
+                    </smsnotifications>
                 </observers>
             </sales_order_place_after>
         </events>

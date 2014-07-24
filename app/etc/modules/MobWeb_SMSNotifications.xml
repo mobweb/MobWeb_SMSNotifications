@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <modules>
-        <MobWeb_TwilioIntegration>
+        <MobWeb_SMSNotifications>
             <active>true</active>
             <codePool>community</codePool>
-        </MobWeb_TwilioIntegration>
+        </MobWeb_SMSNotifications>
     </modules>
 </config>

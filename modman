@@ -1,6 +1,6 @@
-app/code/community/MobWeb/TwilioIntegration app/code/community/MobWeb/TwilioIntegration/
+app/code/community/MobWeb/SMSNotifications app/code/community/MobWeb/SMSNotifications/
 
-app/etc/modules/MobWeb_TwilioIntegration.xml app/etc/modules/MobWeb_TwilioIntegration.xml
+app/etc/modules/MobWeb_SMSNotifications.xml app/etc/modules/MobWeb_SMSNotifications.xml
 
 # Clear the cache
 @shell   rm -rf $PROJECT/var/cache/* && echo "Magento Cache cleared"

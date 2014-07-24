@@ -1,6 +1,6 @@
 <?php
 
-class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
+class MobWeb_SMSNotifications_Helper_Data extends Mage_Core_Helper_Abstract {
 
 	public $app_name = 'Twilio Integration';
 
@@ -11,19 +11,19 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 		$settings = array();
 
 		// Get the Twilio settings
-		$settings['twilio_account_sid'] = Mage::getStoreConfig('twiliointegration/twilio_api_credentials/account_sid');
-		$settings['twilio_auth_token'] = Mage::getStoreConfig('twiliointegration/twilio_api_credentials/auth_token');
-		$settings['twilio_sender_number'] = Mage::getStoreConfig('twiliointegration/twilio_api_credentials/sender_number');
+		$settings['twilio_account_sid'] = Mage::getStoreConfig('smsnotifications/twilio_api_credentials/account_sid');
+		$settings['twilio_auth_token'] = Mage::getStoreConfig('smsnotifications/twilio_api_credentials/auth_token');
+		$settings['twilio_sender_number'] = Mage::getStoreConfig('smsnotifications/twilio_api_credentials/sender_number');
 
 		// Get the general settings
-		$settings['country_code_filter'] = Mage::getStoreConfig('twiliointegration/general/country_code_filter');
+		$settings['country_code_filter'] = Mage::getStoreConfig('smsnotifications/general/country_code_filter');
 
 		// Get the order notification settings
-		$settings['order_noficication_recipients'] = Mage::getStoreConfig('twiliointegration/order_notification/recipients');
+		$settings['order_noficication_recipients'] = Mage::getStoreConfig('smsnotifications/order_notification/recipients');
 		$settings['order_noficication_recipients'] = explode(';', $settings['order_noficication_recipients']);
 
 		// Get the shipment notification settings
-		$settings['shipment_notification_message'] = Mage::getStoreConfig('twiliointegration/shipment_notification/message');
+		$settings['shipment_notification_message'] = Mage::getStoreConfig('smsnotifications/shipment_notification/message');
 
 		// Return the settings
 		return $settings;
@@ -148,6 +148,6 @@ class MobWeb_TwilioIntegration_Helper_Data extends Mage_Core_Helper_Abstract {
 	// This method creates a log entry in the extension specific log file
 	public function log($msg)
 	{
-		Mage::log($msg, null, 'mobweb_twiliointegration.log', true);
+		Mage::log($msg, null, 'mobweb_smsnotifications.log', true);
 	}
 }
