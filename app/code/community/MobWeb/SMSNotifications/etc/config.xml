@@ -41,19 +41,15 @@
                     </smsnotifications>
                 </observers>
             </sales_order_shipment_save_after>
-        </events>
-    </global>
-    <frontend>
-        <events>
-            <sales_order_place_after>
+            <sales_order_save_after>
                 <observers>
                     <smsnotifications>
                         <type>singleton</type>
                         <class>smsnotifications/observer</class>
-                        <method>salesOrderPlaceAfter</method>
+                        <method>salesOrderSaveAfter</method>
                     </smsnotifications>
                 </observers>
-            </sales_order_place_after>
+            </sales_order_save_after>
         </events>
-    </frontend>
+    </global>
  </config>

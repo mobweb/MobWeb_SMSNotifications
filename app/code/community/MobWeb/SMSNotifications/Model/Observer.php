@@ -2,11 +2,32 @@
 
 class MobWeb_SMSNotifications_Model_Observer
 {
-	// This method is called whenever a new order is placed with the store
-	public function salesOrderPlaceAfter($observer)
+	// This method is called whenever an order is saved. It checks if the order's
+	// status has been updated and if yes, checks if the new order status should
+	// trigger sending a notification
+	public function salesOrderSaveAfter($observer)
 	{
-		// Get the order object
+		// Get the settings
+		$settings = Mage::helper('smsnotifications/data')->getSettings();
+
+		// Get the new order object
 		$order = $observer->getEvent()->getOrder();
+
+		// Get the old order data
+		$oldOrder = $order->getOrigData();
+
+		// If the order status hasn't changed, don't do anything
+		if($oldOrder['status'] === $order->getStatus()) {
+			return;
+		}
+
+		// If the order status has changed, check if a notification should be sent
+		// for the new status. If not, don't do anything
+		if($order->getStatus() !== $settings['order_notification_status']) {
+			return;
+		}
+
+		Mage::log('sending', null, 'm.txt');
 
 		// Generate the body for the notification
 		$store_name = Mage::app()->getStore()->getFrontendName();
@@ -16,9 +37,6 @@ class MobWeb_SMSNotifications_Model_Observer
 		$order_amount .= ' ' . $order->getBaseGrandTotal();
 
 		$body = sprintf('%s: %s has just placed an order for %s', $store_name, $customer_name, $order_amount);
-
-		// Get the settings
-		$settings = Mage::helper('smsnotifications/data')->getSettings();
 
 		// If no recipients have been set, we can't do anything
 		if(!count($settings['order_noficication_recipients'])) {
