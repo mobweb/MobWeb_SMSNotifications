@@ -21,6 +21,7 @@ class MobWeb_SMSNotifications_Helper_Data extends Mage_Core_Helper_Abstract {
 		// Get the order notification settings
 		$settings['order_noficication_recipients'] = Mage::getStoreConfig('smsnotifications/order_notification/recipients');
 		$settings['order_noficication_recipients'] = explode(';', $settings['order_noficication_recipients']);
+		$settings['order_notification_status'] = Mage::getStoreConfig('smsnotifications/order_notification/order_status');
 
 		// Get the shipment notification settings
 		$settings['shipment_notification_message'] = Mage::getStoreConfig('smsnotifications/shipment_notification/message');

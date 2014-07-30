@@ -117,7 +117,7 @@
 					<show_in_store>0</show_in_store>
 					<comment><![CDATA[
 						<p>
-							To send an automatic notification by SMS once an order has been placed with your store, enter the recipient number(s) below.
+							To send an automatic notification by SMS once an order has been placed with your store, enter the recipient number(s) below and select which order status should trigger the notification.
 						</p>
 					]]></comment>
 					<fields>
@@ -133,6 +133,18 @@
 							]]></comment>
 							<sort_order>97</sort_order>
 						</recipients>
+						<order_status>
+							<label>Notification Order Status</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[
+								Select the order status that should send the notification. Select the order status that indicates that an order has been placed successfully, and avoid sending a notification for orders that failed because for example the payment was not successfull.
+							]]></comment>
+							<sort_order>98</sort_order>
+						</order_status>
 					</fields>
 				</order_notification>
 				<shipment_notification module="smsnotifications">
